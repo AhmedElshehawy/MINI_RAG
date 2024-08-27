@@ -42,6 +42,7 @@ Set your enviroment variables in the `.env` file. Like `OPENAI_API_KEY` value.
 ```bash
 uvicorn --reload --host 0.0.0.0 --port 5000 main:app
 ```
+
 ## Postman collection
 
 Download the postman collection from [here](assets/mini-rag-collection.postman_collection.json)
