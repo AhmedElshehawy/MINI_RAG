@@ -51,6 +51,11 @@
 			"key": "api",
 			"value": "http://127.0.0.1:8000",
 			"type": "string"
+		},
+		{
+			"key": "prefix",
+			"value": "/api/v1",
+			"type": "string"
 		}
 	]
 }
