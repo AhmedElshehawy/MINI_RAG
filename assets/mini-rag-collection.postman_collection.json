@@ -12,12 +12,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{api}}/welcome",
+					"raw": "{{api}}{{prefix}}/",
 					"host": [
-						"{{api}}"
+						"{{api}}{{prefix}}"
 					],
 					"path": [
-						"welcome"
+						""
 					]
 				}
 			},
