@@ -1,6 +1,6 @@
 from .BaseDataModel import BaseDataModel
 from .db_schemes import Project
-from enums import DataBaseEnum
+from .enums import DataBaseEnum
 from math import ceil
 
 class ProjectModel(BaseDataModel):
@@ -10,7 +10,7 @@ class ProjectModel(BaseDataModel):
         
         
     async def create_project(self, project: Project):
-        result = await self.collection.insert_one(project.model_dump())
+        result = await self.collection.insert_one(project.model_dump(by_alias=True, exclude_unset=True))
         project._id = result.inserted_id
         return project
     
@@ -33,11 +33,9 @@ class ProjectModel(BaseDataModel):
     async def get_all_projects(self, page: int=1, page_size: int=10):
         # count total number of douments
         # Cache total document count for optimization
-        if 'total_documents_' not in self.__dict__:
-            self.total_documents_ = await self.collection.count_documents({}) # empty dictionary to count all documents
-        total_documents = self.total_documents_
-        
-        total_pages = ceil(total_documents / page_size) 
+        # if 'total_documents_' not in self.__dict__:
+        self.total_documents_ = await self.collection.count_documents({}) # empty dictionary to count all documents
+        total_documents = self.total_documents_ 
         
         # calculate number of total pages
         total_pages = ceil(total_documents / page_size)

@@ -4,7 +4,8 @@ from pydantic import BaseModel, Field
 
 
 class DataChunk(BaseModel):
-    _id: Optional[ObjectId]
+    # fields that start with underscore can't be accessed, so we use them as an alias
+    id: Optional[ObjectId] = Field(None, alias="_id")
     chunk_text: str = Field(..., min_length=1)
     chunk_metadata: dict
     chunk_order: int = Field(..., gt=0)

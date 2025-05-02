@@ -3,7 +3,8 @@ from typing import Optional
 from bson.objectid import ObjectId
 
 class Project(BaseModel):
-    _id: Optional[ObjectId]
+    # fields that start with underscore can't be accessed, so we use them as an alias
+    id: Optional[ObjectId] = Field(None, alias="_id")
     project_id: str = Field(..., min_length=1)
     
     @field_validator('project_id')
